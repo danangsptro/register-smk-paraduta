@@ -66,18 +66,16 @@
                                 <p class="text-muted mb-1">
                                     Total Jurusan
                                 </p>
-                                <h2 class="mt-2 mb-0 number-font">78,962</h2>
+                                <h2 class="mt-2 mb-0 number-font">{{$jurusan->count()}}</h2>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
                         <div class="float-left">
-                            <p class="mb-0"><span class=""><i class="fa fa-arrow-circle-o-up ml-1 text-success"></i>
-                                    1.5%</span> last week</p>
+                            <p class="mb-0"><span >
+                                    Jurusan </p>
                         </div>
-                        <div class="float-right">
-                            <i class="fa fa-line-chart text-muted"></i>
-                        </div>
+
                     </div>
                 </div>
             </div>

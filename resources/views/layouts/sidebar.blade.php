@@ -19,7 +19,7 @@
                     class="side-menu__label">Dashboard</span></a>
         </li>
         <li>
-            <a class="side-menu__item" href="{{ route('login') }}"><i class="side-menu__icon fa fas fa-book"></i><span
+            <a class="side-menu__item" href="{{ route('jurusan') }}"><i class="side-menu__icon fa fas fa-book"></i><span
                     class="side-menu__label">Jurusan</span></a>
         </li>
         <li class="slide">

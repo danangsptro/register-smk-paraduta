@@ -57,44 +57,13 @@
     </div>
     <!-- Jquery js-->
     <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>
-    <!--Bootstrap.min js-->
     <script src="{{ asset('assets/js/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/js/bootstrap.min.js') }}"></script>
-    <!--Jquery Sparkline js-->
     <script src="{{ asset('assets/js/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.sparkline.min.js') }}"></script>
-    <!-- Chart Circle js-->
-    <script src="{{ asset('assets/js/circle-progress.min.js') }}"></script>
-    <!-- Star Rating js-->
-    <script src="{{ asset('assets/js/rating/jquery.rating-stars.js') }}"></script>
-    <!--Moment js-->
-    <script src="../../assets/plugins/moment/moment.min.js"></script>
-    <!-- Daterangepicker js-->
-    <script src="../../assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!--Side-menu js-->
     <script src="{{ asset('assets/js/sidemenu/sidemenu.js') }}"></script>
-    <!-- P-scrollbar js-->
-    <script src="../../assets/plugins/p-scrollbar/p-scrollbar.js"></script>
-    <script src="../../assets/plugins/p-scrollbar/p-scrollbar-leftmenu.js"></script>
-    <!--Peitychart js -->
-    <script src="../../assets/plugins/peitychart/jquery.peity.min.js"></script>
-    <script src="../../assets/plugins/peitychart/peitychart.init.js"></script>
-    <!-- Rightsidebar js -->
-    <script src="../../assets/plugins/sidebar/sidebar.js"></script>
-    <!-- Charts js-->
-    <script src="../../assets/plugins/chart/chart.bundle.js"></script>
-    <script src="../../assets/plugins/chart/utils.js"></script>
-    <!--Morris  Charts js-->
-    <script src="../../assets/plugins/morris/raphael-min.js"></script>
-    <script src="../../assets/plugins/morris/morris.js"></script>
-    <!--Time Counter js-->
-    <script src="../../assets/plugins/counters/jquery.missofis-countdown.js"></script>
-    <script src="../../assets/plugins/counters/counter.js"></script>
-    <!-- Custom-charts js-->
     <script src="{{ asset('assets/js/index1.js') }}"></script>
-    <!-- Custom js-->
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-
     <script src="{{ asset('assets/js/dataTables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables/datatable.js') }}"></script>

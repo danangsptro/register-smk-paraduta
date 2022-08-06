@@ -18,8 +18,13 @@ Auth::routes();
 // Backend
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('backend')->group(function () {
-        Route::get('/register-user', 'Backend\registerUserController@index')->name('register-user');
         Route::get('/dashboard', 'Backend\dashboardController@index')->name('dashboard');
+        // Register
+        Route::post('/store-register','Backend\RegisterUserController@store')->name('store-register');
+        Route::get('/register-user', 'Backend\registerUserController@index')->name('register-user');
+        // Jurusan
+        Route::get('/jurusan', 'Backend\jurusanController@index')->name('jurusan');
+        Route::post('/jurusan-store', 'Backend\jurusanController@store')->name('jurusan-store');
     });
 });
 
