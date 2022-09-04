@@ -4562,7 +4562,7 @@ body.dark-mode.sidebar-show:before {
 }
 
 .dark-mode .slide.is-expanded .side-menu__item {
-    color: #868eff;
+    color: green;
     background: rgba(0, 0, 0, 0.2);
 }
 

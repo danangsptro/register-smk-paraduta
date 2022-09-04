@@ -19,7 +19,9 @@
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Location</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Register/Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('formlir-pendaftaran') }}">Formulir
+                                Pendaftaran</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -78,15 +80,15 @@
                 </div>
                 <div class="row">
                     @foreach ($jurusan as $item)
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 1-->
-                        <div class="portfolio-item shadow ">
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">{{$item->kode_jurusan}}</div>
-                                <div class="portfolio-caption-subheading text-muted">{{$item->nama_jurusan}}</div>
+                        <div class="col-lg-4 col-sm-6 mb-4">
+                            <!-- Portfolio item 1-->
+                            <div class="portfolio-item shadow ">
+                                <div class="portfolio-caption">
+                                    <div class="portfolio-caption-heading">{{ $item->kode_jurusan }}</div>
+                                    <div class="portfolio-caption-subheading text-muted">{{ $item->nama_jurusan }}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -229,29 +231,6 @@
                 </div>
             </div>
         </section>
-        <!-- Clients-->
-        <div class="py-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                                src="assets/img/logos/microsoft.svg" alt="..." aria-label="Microsoft Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                                src="assets/img/logos/google.svg" alt="..." aria-label="Google Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                                src="assets/img/logos/facebook.svg" alt="..." aria-label="Facebook Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg"
-                                alt="..." aria-label="IBM Logo" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
@@ -260,7 +239,10 @@
                     <h3 class="section-subheading text-muted">SMK PARADUTA BANGSA TANGERANG SELATAN</h3>
                 </div>
                 <div class="text-center">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1771805727317!2d106.66362251535185!3d-6.24036446284589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbaaf0c3ff9d%3A0x66a111033346bbd7!2sSMK%20PARADUTA%20BANGSA!5e0!3m2!1sid!2sid!4v1659508978146!5m2!1sid!2sid" width="1200" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1771805727317!2d106.66362251535185!3d-6.24036446284589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbaaf0c3ff9d%3A0x66a111033346bbd7!2sSMK%20PARADUTA%20BANGSA!5e0!3m2!1sid!2sid!4v1659508978146!5m2!1sid!2sid"
+                        width="1200" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
@@ -268,7 +250,7 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; SMK PARADUTA BANGSA TANGERANG SELATAN 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
                                 class="fab fa-twitter"></i></a>
@@ -533,4 +515,3 @@
         </div>
     </div>
 @endsection
-

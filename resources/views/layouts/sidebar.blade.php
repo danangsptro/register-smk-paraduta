@@ -19,25 +19,86 @@
                     class="side-menu__label">Dashboard</span></a>
         </li>
         <li>
-            <a class="side-menu__item" href="{{ route('jurusan') }}"><i class="side-menu__icon fa fas fa-book"></i><span
-                    class="side-menu__label">Jurusan</span></a>
+            <h3>Student</h3>
         </li>
-        <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="#"><i
-                    class="side-menu__icon fe fe-file-text"></i><span class="side-menu__label">Invoice</span><i
-                    class="angle fa fa-angle-right"></i></a>
-            <ul class="slide-menu">
-                <li><a href="form-wizard.html" class="slide-item"> Invoice</a></li>
-            </ul>
+        <li>
+            @if (Auth::user()->user_role === 'siswa')
+                <a class="side-menu__item" href="{{ route('form-pendaftaran') }}"><i
+                        class="side-menu__icon fa fas fa fa-registered"></i><span
+                        class="side-menu__label">Pendaftaran</span></a>
+            @else
+                <a class="side-menu__item" href="{{ route('jumlah-pendaftaran') }}"><i
+                        class="side-menu__icon fa fas fa fa-registered"></i><span class="side-menu__label">Jumlah
+                        Pendaftaran</span></a>
+            @endif
         </li>
-        <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="#"><i
-                    class="side-menu__icon fe fe-file-text"></i><span class="side-menu__label">Laporan</span><i
-                    class="angle fa fa-angle-right"></i></a>
-            <ul class="slide-menu">
-                <li><a href="form-wizard.html" class="slide-item"> Invoice</a></li>
-            </ul>
-        </li>
+
+        @if (Auth::user()->user_role === 'siswa')
+            <li>
+                <a class="side-menu__item" href="{{ route('form-status-pendaftaran') }}"><i
+                        class="side-menu__icon fa fas fa fa-circle-o"></i><span class="side-menu__label">Status
+                        Pendaftaran</span></a>
+            </li>
+            <li>
+                <h3>
+                    Note</h3>
+            </li>
+            <li>
+                <a class="side-menu__item" href="{{ route('invoice-siswa') }}"><i
+                        class="side-menu__icon fe fe-file-text"></i><span class="side-menu__label">Invoice</span></a>
+            </li>
+        @endif
+        @if (Auth::user()->user_role === 'admin')
+            <li>
+                <a class="side-menu__item" href="{{ route('status') }}"><i
+                        class="side-menu__icon fa fas fa fa-circle-o"></i><span
+                        class="side-menu__label">Status</span></a>
+            </li>
+            <li>
+                <a class="side-menu__item" href="{{ route('kelas') }}">
+                    <i class="ti-book" data-toggle="tooltip" title="ti-book"></i><span
+                        class="side-menu__label">&nbsp;&nbsp; Kelas</span></a>
+            </li>
+            <li>
+                <a class="side-menu__item" href="{{ route('jurusan') }}"><i
+                        class="side-menu__icon fa fas fa-book"></i><span class="side-menu__label">Jurusan</span></a>
+            </li>
+
+            <li>
+                <h3>Other</h3>
+            </li>
+            <li>
+                <a class="side-menu__item" href="{{ route('approve-status-pendaftaran') }}"><i
+                        class="side-menu__icon fa fas fa-book"></i><span class="side-menu__label">Approve
+                        Register</span></a>
+            </li>
+            <li>
+                <a class="side-menu__item" href="{{ route('jenis-biaya') }}">
+                    <i class="ti-money" data-toggle="tooltip" title="ti-money"></i><span class="side-menu__label">&nbsp;
+                        Jenis
+                        Biaya</span></a>
+            </li>
+            <li>
+                <h3>Note</h3>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i
+                        class="side-menu__icon fe fe-file-text"></i><span class="side-menu__label">Invoice</span><i
+                        class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a href="{{ route('invoice') }}" class="slide-item"> Invoice</a></li>
+                    <li><a href="{{ route('bukti-invoice') }}" class="slide-item"> Bukti Transfer</a></li>
+                </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i
+                        class="side-menu__icon fe fe-file-text"></i><span class="side-menu__label">Laporan</span><i
+                        class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li><a href="{{ route('laporan-calon-siswa') }}" class="slide-item">Laporan Calon Siswa</a></li>
+                </ul>
+            </li>
+        @endif
         {{-- <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fe fe-bar-chart-2"></i><span class="side-menu__label">Charts</span><i class="angle fa fa-angle-right"></i></a>
             <ul class="slide-menu">
@@ -128,7 +189,10 @@
                     class="side-menu__icon fe fe-unlock"></i><span class="side-menu__label">Custom</span><i
                     class="angle fa fa-angle-right"></i></a>
             <ul class="slide-menu">
-                <li><a href="{{route('register-user')}}" class="slide-item"> Register</a></li>
+                <li><a href="{{ route('profile') }}" class="slide-item"> Profile</a></li>
+                @if (Auth::user()->user_role === 'admin')
+                    <li><a href="{{ route('register-user') }}" class="slide-item"> Register</a></li>
+                @endif
 
             </ul>
         </li>

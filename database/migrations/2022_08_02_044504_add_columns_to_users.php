@@ -14,12 +14,12 @@ class AddColumnsToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('jenis_kelamin',15)->after('email');
-            $table->text('alamat')->after('jenis_kelamin');
-            $table->string('user_role',15)->after('alamat');
-            $table->bigInteger('no_telepon')->after('user_role');
-            $table->string('tempat_lahir',20)->after('no_telepon');
-            $table->date('tanggal_lahir')->after('tempat_lahir');
+            $table->string('jenis_kelamin',15)->after('email')->nullable();
+            $table->text('alamat')->after('jenis_kelamin')->nullable();
+            $table->string('user_role',15)->after('alamat')->nullable();
+            $table->bigInteger('no_telepon')->after('user_role')->nullable();
+            $table->string('tempat_lahir',20)->after('no_telepon')->nullable();
+            $table->date('tanggal_lahir')->after('tempat_lahir')->nullable();
 
         });
     }

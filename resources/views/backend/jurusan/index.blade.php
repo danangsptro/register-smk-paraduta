@@ -22,7 +22,7 @@
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header bg-dark">
                                     <h5 class="modal-title" id="exampleModalLabel">Create Jurusan</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -57,14 +57,6 @@
                             </div>
                         </div>
                     </div>
-                    &nbsp;
-                    &nbsp;
-                    <a href="#" class="btn btn-danger btn-icon" data-toggle="tooltip" title=""
-                        data-placement="bottom" data-original-title="Support">
-                        <span>
-                            <i class="fe fe-download"> Download</i>
-                        </span>
-                    </a>
                 </div>
             </div>
         </div>

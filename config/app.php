@@ -106,7 +106,9 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'timezone' => 'Asia/Jakarta',
+    'locale' => 'id',
+    'faker_locale' => 'id_ID',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,7 +122,9 @@ return [
     */
 
     'key' => env('APP_KEY'),
-
+    'name' => env('APP_NAME', 'Laravel'),
+    'mail_from' => env('MAIL_USERNAME'),
+    'mail_name' => env('MAIL_NAME'),
     'cipher' => 'AES-256-CBC',
 
     /*

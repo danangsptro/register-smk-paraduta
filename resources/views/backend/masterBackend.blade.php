@@ -47,7 +47,7 @@
             <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
             @include('layouts.sidebar')
             <!-- app-content-->
-            <div class="app-content toggle-content">
+            <div class="app-content toggle-content" style="background: antiquewhite;">
                 @yield('backend')
 
             </div>
@@ -69,6 +69,7 @@
     <script src="{{ asset('assets/js/dataTables/datatable.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables/dataTables.responsive.min.js') }}"></script>
 
+    @yield('script')
 
 </body>
 

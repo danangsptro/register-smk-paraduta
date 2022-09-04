@@ -22,14 +22,14 @@
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header bg-dark">
                                     <h5 class="modal-title" id="exampleModalLabel">Create Register User</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form  action="{{ route('store-register') }}" method="POST">
+                                    <form action="{{ route('store-register') }}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -50,7 +50,8 @@
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Jenis
                                                         Kelamin:</label>
-                                                    <input type="text" class="form-control" id="recipient-name" name="jenis_kelamin" required>
+                                                    <input type="text" class="form-control" id="recipient-name"
+                                                        name="jenis_kelamin" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -79,20 +80,23 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Tempat Lahir:</label>
-                                                    <input type="text" class="form-control" id="recipient-name" name="tempat_lahir" required>
+                                                    <input type="text" class="form-control" id="recipient-name"
+                                                        name="tempat_lahir" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Tanggal
                                                         Lahir:</label>
-                                                    <input type="date" class="form-control" id="recipient-name" name="tanggal_lahir" required>
+                                                    <input type="date" class="form-control" id="recipient-name"
+                                                        name="tanggal_lahir" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Password:</label>
-                                                    <input type="text" class="form-control" id="recipient-name" name="password" required>
+                                                    <input type="text" class="form-control" id="recipient-name"
+                                                        name="password" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,14 +110,6 @@
                             </div>
                         </div>
                     </div>
-                    &nbsp;
-                    &nbsp;
-                    <a href="#" class="btn btn-danger btn-icon" data-toggle="tooltip" title=""
-                        data-placement="bottom" data-original-title="Support">
-                        <span>
-                            <i class="fe fe-download"> Download</i>
-                        </span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -152,11 +148,24 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->jenis_kelamin }}</td>
                                             <td>{{ $item->alamat }}</td>
-                                            <td>{{ $item->user_role }}</td>
+                                            <td>
+                                                @if ($item->user_role === 'admin')
+                                                    <span class="badge badge-primary  mr-1 mb-1 mt-1">
+                                                        {{ $item->user_role }}
+                                                    </span>
+                                                @elseif ($item->user_role === 'tu')
+                                                    <span class="badge badge-warning  mr-1 mb-1 mt-1">
+                                                        {{ $item->user_role }}
+                                                    </span>
+                                                @elseif ($item->user_role === 'panitia')
+                                                    <span class="badge badge-dark  mr-1 mb-1 mt-1">
+                                                        {{ $item->user_role }}
+                                                    </span>
+                                                @endif
+                                            </td>
                                             <td>{{ $item->no_telepon }}</td>
                                             <td>{{ $item->tempat_lahir }}</td>
                                             <td>{{ $item->tanggal_lahir }}</td>
-
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -629,7 +629,7 @@ body.dark-mode.body-style1 {
 }
 
 .leftmenu-dark .app-sidebar .side-menu__item.active .side-menu__icon {
-    color: #868eff !important;
+    color: green !important;
 }
 
 .leftmenu-dark .app-sidebar .toggle-menu .side-menu__item:hover {
@@ -750,7 +750,7 @@ body.dark-mode.body-style1 {
 }
 
 .leftmenu-light .app-sidebar .slide-menu .slide-item:hover {
-    color: #5964ff;
+    color: green;
 }
 
 .leftmenu-light .app-sidebar .toggle-menu .side-menu__item.active {
