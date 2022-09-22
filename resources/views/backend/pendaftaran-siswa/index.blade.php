@@ -108,7 +108,7 @@
                                         <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
                                         <input type="text" name="nama_calon_siswa" class="form-control "
-                                            placeholder="Asal Sekolah" required>
+                                            placeholder="Nama Siswa" required>
                                         @error('nama_calon_siswa')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -164,7 +164,7 @@
                                         class="col-sm-3 text-right col-form-label font-weight-bold">Tahun Lulus
                                         <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="tahun_lulus" class="form-control "
+                                        <input type="number" name="tahun_lulus" class="form-control "
                                             placeholder="Tahun Lulus" required>
                                         @error('tahun_lulus')
                                             <div class="text-danger">{{ $message }}</div>
@@ -177,7 +177,7 @@
                                         <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
                                         <select class=" form-control  r-0 light" id="jurusan_id" name="jurusan_id">
-                                            <option selected>Pilih Jurusan</option>
+                                            <option readonly>Pilih Jurusan</option>
                                             @foreach ($jurusan as $item)
                                                 <option value="{{ $item->id }}">
                                                     {{ $item->nama_jurusan }}</option>
@@ -191,14 +191,11 @@
                                         <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
                                         <select class=" form-control  r-0 light" id="kelas_id" name="kelas_id">
-                                            <option selected>Pilih Kelas</option>
-                                            @foreach ($kelas as $item)
-                                                <option value="{{ $item->id }}">
-                                                    {{ $item->nama_kelas }}
-                                                </option>
-                                            @endforeach
-
+                                            <option readonly>Pilih Kelas</option>
                                         </select>
+                                        @error('kelas_id')
+                                            <label class="text-danger">{{ $message }}</label>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -206,7 +203,7 @@
                                         class="col-sm-3 text-right col-form-label font-weight-bold">No Telp Siswa
                                         <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="no_telp_siswa" class="form-control "
+                                        <input type="number" name="no_telp_siswa" class="form-control "
                                             placeholder="Tahun Lulus" required>
                                         @error('no_telp_siswa')
                                             <div class="text-danger">{{ $message }}</div>
@@ -231,7 +228,7 @@
                                         class="col-sm-3 text-right col-form-label font-weight-bold">No Telp Orang Tua
                                         <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="no_telp_orang_tua" class="form-control "
+                                        <input type="number" name="no_telp_orang_tua" class="form-control "
                                             placeholder="No Telp Orang Tua" required>
                                         @error('no_telp_orang_tua')
                                             <div class="text-danger">{{ $message }}</div>
@@ -390,6 +387,65 @@
     </div>
 
 @endsection
+
 @section('script')
 
+    <script>
+        $(document).ready(function() {
+            let kelasId = $('#jurusan_id option:selected').val()
+            if (kelasId != '') {
+                $.ajax({
+                    url: '/backend/getKelas/' + kelasId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data, 'data2')
+                        $.each(data, function(value, key) {
+                            $('select[name="kelas_id"]').append('<option value="' + key + '">' +
+                                value + '</option>')
+                        })
+                    }
+                })
+            }
+
+            $('select[name="jurusan_id"]').on('change', function() {
+                var kelasId = $(this).val();
+                console.log(kelasId, 'kelasId')
+                if (kelasId) {
+                    $.ajax({
+                        url: '/backend/getKelas/' + kelasId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('select[name="kelas_id"]').empty();
+                            $.each(data, function(value, key) {
+                                console.log(key, 'value')
+                                if (key.jumlah_siswa != 0) {
+                                    $('select[name="kelas_id"]').append(
+                                        '<option value="' +
+                                        key.id + '">' + key.nama_kelas +
+                                        ' | Kouta :' + key.jumlah_siswa +
+                                        '</option>.')
+                                }
+
+                                // if(key.jumlah_siswa != 0) {
+                                //     $('select[name="kelas_id"]').append('<option value="' +
+                                //     key.id + '">' + key.nama_kelas  + ' | Kouta :' +key.jumlah_siswa+ '</option>')
+                                // }else{
+                                //     $('select[name="kelas_id"]').append('<option disabled="' +
+                                //     key.id + '">' + key.nama_kelas  + ' | Kouta :' +key.jumlah_siswa+ '</option>')
+                                // }
+                            })
+                        }
+                    })
+                }
+                // else {
+                //     console.log(
+                //     $('select[name="kelas_id"]').empty(),'gatau'
+
+                //     )
+                // }
+            })
+        })
+    </script>
 @endsection

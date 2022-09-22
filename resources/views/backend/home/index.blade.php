@@ -133,7 +133,7 @@
                                 <div class="">
                                     <div class="feature">
                                         <div class="icon-service2 bg-success br-3">
-                                            <i class="fe fe-dollar-sign text-white fs-30"></i>
+                                            <i class="ti-book"></i>
                                         </div>
                                     </div>
                                 </div>

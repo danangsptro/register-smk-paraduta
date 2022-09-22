@@ -43,7 +43,7 @@ class formPendaftaranController extends Controller
             'jurusan_id' => 'required|min:1',
             'kelas_id' => 'required|min:1',
             'no_telp_siswa' => 'required|min:10',
-            'nama_orang_tua' => 'required|min:5',
+            'nama_orang_tua' => 'required|min:4',
             'no_telp_orang_tua' => 'required|min:10',
         ]);
 
@@ -82,6 +82,11 @@ class formPendaftaranController extends Controller
                 $data->nama_orang_tua = $request['nama_orang_tua'];
                 $data->no_telp_orang_tua = $request['no_telp_orang_tua'];
                 $data->save();
+
+                $count = formPendaftaran::where('id', $data->id)->get();
+                $kelas = kelas::where('jurusan_id', $data->jurusan_id)->first();
+                $kelas->jumlah_siswa =  $kelas->jumlah_siswa - $count->count();
+                $kelas->save();
 
                 $invoice = invoice::where('user_id', $auth->id)->first();
                 $invoice->status_id = 4;
@@ -126,7 +131,12 @@ class formPendaftaranController extends Controller
             $jumlahPendaftaran = $jumlahPendaftaran->whereBetween('updated_at', [$start, $end]);
         }
 
-        return view('backend.pendaftaran-siswa.jumlah-pendaftaran', compact('jumlahPendaftaran', 'start', 'end'));
+        if (Auth::user()->user_role === 'admin' || Auth::user()->user_role === 'panitia') {
+            return view('backend.pendaftaran-siswa.jumlah-pendaftaran', compact('jumlahPendaftaran', 'start', 'end'));
+        } else {
+            toastr()->error('Access denied');
+            return redirect()->back();
+        }
     }
 
     public function updateStatusJumlahPendaftaran($id)
@@ -154,5 +164,13 @@ class formPendaftaranController extends Controller
         }
         toastr()->success('Sukses Update Status!');
         return redirect()->back();
+    }
+
+    public function getKelas($id)
+    {
+        $data = kelas::where('jurusan_id', $id)->get();
+        // dd($data);.
+        return $data;
+        // return $data->pluck('id', 'nama_kelas' , 'jumlah_siswa');
     }
 }

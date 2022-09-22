@@ -12,7 +12,7 @@ class statusController extends Controller
     public function index()
     {
         $data = status::all();
-        if (Auth::user()->user_role === 'admin') {
+        if (Auth::user()->user_role === 'admin' || Auth::user()->user_role === 'panitia') {
             return view('backend.status.index', compact('data'));
         }else{
             toastr()->error('Access denied');

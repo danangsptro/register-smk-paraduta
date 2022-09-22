@@ -29,4 +29,14 @@ class kelasController extends Controller
             return redirect()->back();
         }
     }
+
+    public function delete ($id)
+    {
+        $data = kelas::find($id);
+        $data->delete();
+        if ($data) {
+            toastr()->success('Data has been delete successfully!');
+            return redirect()->back();
+        }
+    }
 }

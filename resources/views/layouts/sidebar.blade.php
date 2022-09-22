@@ -1,4 +1,13 @@
 <aside class="app-sidebar toggle-sidebar">
+    <style>
+        .side-menu__item{
+            background-image: linear-gradient(to right, rgb(255, 217, 114) , #fda008);
+            border-radius: 10px;
+        }
+        li{
+            padding: 2px;
+        }
+    </style>
     <ul class="side-menu toggle-menu">
         <li>
             <h3>Main</h3>
@@ -48,11 +57,13 @@
                         class="side-menu__icon fe fe-file-text"></i><span class="side-menu__label">Invoice</span></a>
             </li>
         @endif
-        @if (Auth::user()->user_role === 'admin')
-            <li>
-                <a class="side-menu__item" href="{{ route('status') }}"><i
-                        class="side-menu__icon fa fas fa fa-circle-o"></i><span
-                        class="side-menu__label">Status</span></a>
+        @if (Auth::user()->user_role !== 'siswa')
+            @if (Auth::user()->user_role !== 'kepalasekolah')
+                <li>
+                    <a class="side-menu__item" href="{{ route('status') }}"><i
+                            class="side-menu__icon fa fas fa fa-circle-o"></i><span
+                            class="side-menu__label">Status</span></a>
+            @endif
             </li>
             <li>
                 <a class="side-menu__item" href="{{ route('kelas') }}">
@@ -96,6 +107,7 @@
                         class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     <li><a href="{{ route('laporan-calon-siswa') }}" class="slide-item">Laporan Calon Siswa</a></li>
+                    <li><a href="{{ route('laporan-jurusan') }}" class="slide-item">Laporan Jurusan</a></li>
                 </ul>
             </li>
         @endif

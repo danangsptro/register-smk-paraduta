@@ -14,11 +14,6 @@ class landingPageController extends Controller
         return view('frontend.landing', compact('jurusan'));
     }
 
-    public function register()
-    {
-        return view('frontend.register');
-    }
-
     public function formlir()
     {
         return view('frontend.formulir');

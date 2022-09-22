@@ -161,9 +161,17 @@
                                                     <span class="badge badge-dark  mr-1 mb-1 mt-1">
                                                         {{ $item->user_role }}
                                                     </span>
+                                                @elseif($item->user_role === 'kepalasekolah')
+                                                    <span class="badge badge-info  mr-1 mb-1 mt-1">
+                                                        {{ $item->user_role }}
+                                                    </span>
+                                                @elseif ($item->user_role === 'siswa')
+                                                    <span class="badge badge-light  mr-1 mb-1 mt-1">
+                                                        {{ $item->user_role }}
+                                                    </span>
                                                 @endif
                                             </td>
-                                            <td>{{ $item->no_telepon }}</td>
+                                            <td>{{ $item->no_telepon  ?? '-' }}</td>
                                             <td>{{ $item->tempat_lahir }}</td>
                                             <td>{{ $item->tanggal_lahir }}</td>
                                         </tr>

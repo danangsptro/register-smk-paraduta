@@ -18,9 +18,9 @@ class CreateUploadInvoicesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('nama_calon_siswa', 50)->nullable();
             $table->string('bukti_transfer_1', 100)->nullable();
-            $table->string('validasi_bukti_transfer_1', 100)->nullable();
+            $table->string('validasi_bukti_transfer_1', 15)->nullable();
             $table->string('bukti_transfer_2', 100)->nullable();
-            $table->string('validasi_bukti_transfer_2', 100)->nullable();
+            $table->string('validasi_bukti_transfer_2', 15)->nullable();
             $table->bigInteger('status_id')->nullable()->unsigned();
             $table->timestamps();
 
