@@ -50,16 +50,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->nama_calon_siswa }}</td>
                                             <td>
-                                                {{-- {{ $item->bukti_transfer_1 ? Klik }} --}}
+                                                <a href="#" class="m-1 " data-toggle="modal"
+                                                    data-target="#edit{{ $loop->iteration }}">
+                                                    {{ $item->bukti_transfer_1 ? 'Detail!' : '-' }}
+                                                </a>
                                                 <div class="d-flex justify-content-center text-center">
-                                                    <a href="" class=" m-1" data-toggle="modal"
-                                                        data-target="#edit{{ $item->iteration }}"
-                                                        style="border-radius: 5rem">
-                                                        {{ $item->bukti_transfer_1 ? 'Detail!' : '-' }}
-
-                                                    </a>
-                                                    <div class="modal fade" id="edit{{ $item->iteration }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="edit{{ $item->iteration }}Label"
+                                                    <div class="modal fade" id="edit{{ $loop->iteration }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="edit{{ $loop->iteration }}Label"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-lg" role="document">
                                                             <div class="modal-content">
@@ -104,15 +101,14 @@
 
 
                                             <td>
-                                                <div class="d-flex justify-content-center text-center">
-                                                    <a href="" class=" m-1" data-toggle="modal"
-                                                        data-target="#edit{{ $item->iteration }}"
-                                                        style="border-radius: 5rem">
-                                                        {{ $item->bukti_transfer_2 ? 'Lihat!' : '-' }}
+                                                <a href="" class=" m-1" data-toggle="modal"
+                                                    data-target="#edit{{ $loop->iteration }}" style="border-radius: 5rem">
+                                                    {{ $item->bukti_transfer_2 ? 'Lihat!' : '-' }}
 
-                                                    </a>
-                                                    <div class="modal fade" id="edit{{ $item->iteration }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="edit{{ $item->iteration }}Label"
+                                                </a>
+                                                <div class="d-flex justify-content-center text-center">
+                                                    <div class="modal fade" id="edit{{ $loop->iteration }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="edit{{ $loop->iteration }}Label"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-lg" role="document">
                                                             <div class="modal-content">

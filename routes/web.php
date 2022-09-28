@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
         // Kelas
         Route::get('/kelas', 'Backend\kelasController@index')->name('kelas');
         Route::post('/kelas-store', 'Backend\kelasController@store')->name('kelas-store');
+        Route::post('kelas-update/{id}', 'Backend\kelasController@update')->name('kelas-update');
         Route::delete('/kelas-delete/{id}', 'Backend\kelasController@delete')->name('kelas-delete');
         // Jenis Data
         Route::get('/jenis-biaya', 'Backend\jenisBiayaController@jenisBiaya')->name('jenis-biaya');

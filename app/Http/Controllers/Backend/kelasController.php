@@ -30,6 +30,16 @@ class kelasController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        $data = kelas::find($id);
+        $data->jurusan_id = $request->jurusan_id;
+        $data->nama_kelas = $request->nama_kelas;
+        $data->jumlah_kelas = $request->jumlah_kelas;
+        dd($data);
+
+    }
+
     public function delete ($id)
     {
         $data = kelas::find($id);
