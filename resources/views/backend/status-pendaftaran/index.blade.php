@@ -204,7 +204,7 @@
                                     </li>
                                 @endif
 
-                                @if ($status[0]->status_id >= 5)
+                                @if ($status[0]->status_id >6)
                                     <li class="active step0">
                                         <br>
                                         <div class="mt-4">

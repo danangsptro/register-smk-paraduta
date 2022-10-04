@@ -35,8 +35,13 @@ class kelasController extends Controller
         $data = kelas::find($id);
         $data->jurusan_id = $request->jurusan_id;
         $data->nama_kelas = $request->nama_kelas;
-        $data->jumlah_kelas = $request->jumlah_kelas;
-        dd($data);
+        $data->jumlah_siswa = $request->jumlah_siswa;
+        $data->save();
+
+        if ($data) {
+            toastr()->success('Data has been updated successfully!');
+            return redirect()->back();
+        }
 
     }
 

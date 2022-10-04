@@ -33,12 +33,19 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td width="120px">
-                                                <img src="{{ Storage::url($item->foto) }}"
-                                                width="100%" alt="">
+                                                <img src="{{ Storage::url($item->foto) }}" width="100%" alt="">
                                             </td>
-                                            <td>{{$item->nama_calon_siswa}}</td>
-                                            <td>{{$item->asal_sekolah}}</td>
-                                            <td>-</td>
+                                            <td>{{ $item->nama_calon_siswa }}</td>
+                                            <td>{{ $item->asal_sekolah }}</td>
+                                            <td>
+                                                {{-- @if (Auth::user()->user_role != 'kepalasekolah')
+                                                    <a href="{{ route('laporanPindahJurusan', $item->id) }}"
+                                                        class="btn btn-dark btn-sm">Pindah Jurusan</a>
+                                                @else
+                                                    -
+                                                @endif --}}
+                                                -
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

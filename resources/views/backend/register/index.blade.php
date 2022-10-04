@@ -138,6 +138,7 @@
                                         <th class="wd-25p">No Telp</th>
                                         <th class="wd-25p">Tempat Lahir</th>
                                         <th class="wd-25p">Tanggal Lahir</th>
+                                        <th class="wd-25p">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -171,9 +172,28 @@
                                                     </span>
                                                 @endif
                                             </td>
-                                            <td>{{ $item->no_telepon  ?? '-' }}</td>
+                                            <td>{{ $item->no_telepon ?? '-' }}</td>
                                             <td>{{ $item->tempat_lahir }}</td>
                                             <td>{{ $item->tanggal_lahir }}</td>
+                                            <td>
+
+                                                @if (Auth::user()->user_role === 'admin' || Auth::user()->user_role === 'panitia')
+                                                    <a href="{{ route('update-user', $item->id) }}"
+                                                        class="btn btn-dark btn-sm"><i class="ion-compose"
+                                                            data-toggle="tooltip" title="ti-pencil"></i> Edit</a>
+                                                    <form action="{{ route('delete-user', $item->id) }}" class="d-inline"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('ANDA YAKIN INGIN MENGHAPUS ?')"><i
+                                                                class="ti-trash" data-toggle="tooltip" title="ti-trash">
+                                                            </i> Delete</button>
+                                                    </form>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

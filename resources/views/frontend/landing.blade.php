@@ -36,12 +36,13 @@
         <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
+                    <h3 class="section-heading text-uppercase"><strong>About</strong></h3>
                     {{-- <h3 class="section-subheading text-muted">SMK PARADUTA BANGSA.</h3> --}}
                 </div>
                 <br><br>
                 <div class="row">
-                    <div class="col-lg-6 text-center">
+                    <div class="col-lg-6 text-center"data-aos="flip-left" data-aos-easing="ease-out-cubic"
+                        data-aos-duration="2000">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -89,9 +90,11 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-lg-6" style="margin-top: 3rem; font-familiy:sans-serif;">
+                    <div class="col-lg-6" style="margin-top: 3rem; font-familiy:sans-serif;" data-aos="fade-left">
                         <h5>
-                        SMK PARADUTA BANGSA adalah salah satu satuan pendidikan dengan jenjang SMK di Pondok Jagung Timur, Kec. Serpong Utara, Kota Tangerang Selatan, Banten. Dalam menjalankan kegiatannya, SMKS PARADUTA BANGSA berada di bawah naungan Kementerian Pendidikan dan Kebudayaan.
+                            SMK PARADUTA BANGSA adalah salah satu satuan pendidikan dengan jenjang SMK di Pondok Jagung
+                            Timur, Kec. Serpong Utara, Kota Tangerang Selatan, Banten. Dalam menjalankan kegiatannya, SMKS
+                            PARADUTA BANGSA berada di bawah naungan Kementerian Pendidikan dan Kebudayaan.
 
                         </h5>
                     </div>
@@ -102,13 +105,14 @@
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase mb-4">JURUSAN</h2>
+                    <h3 class="section-heading text-uppercase mb-4"><strong>JURUSAN</strong></h3>
                 </div>
-                <div class="row">
+                <br>
+                <div class="row" data-aos="flip-up">
                     @foreach ($jurusan as $item)
                         <div class="col-lg-6 col-sm-6 mb-4">
                             <!-- Portfolio item 1-->
-                            <div class="portfolio-item shadow ">
+                            <div class="portfolio-item shadow">
                                 <div class="portfolio-caption">
                                     <div class="portfolio-caption-heading">{{ $item->kode_jurusan }}</div>
                                     <div class="portfolio-caption-subheading text-muted">{{ $item->nama_jurusan }}</div>
@@ -123,13 +127,13 @@
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Location</h2>
+                    <h2 class="section-heading text-uppercase"><strong>Location</strong></h2>
                     <h3 class="section-subheading text-muted">SMK PARADUTA BANGSA TANGERANG SELATAN</h3>
                 </div>
                 <div class="text-center">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1771805727317!2d106.66362251535185!3d-6.24036446284589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbaaf0c3ff9d%3A0x66a111033346bbd7!2sSMK%20PARADUTA%20BANGSA!5e0!3m2!1sid!2sid!4v1659508978146!5m2!1sid!2sid"
-                        width="1200" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                        width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
@@ -151,8 +155,9 @@
                     <div class="col-lg-4 my-3 my-lg-0 text-center">
                         {{-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
                                 class="fab fa-twitter"></i></a> --}}
-                        <a class="btn btn-dark btn-social mx-2" href="https://m.facebook.com/SMK-Paraduta-Bangsa-Tangsel-265080615362977/?ref=page_internal" target="__blank" aria-label="Facebook"><i
-                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2"
+                            href="https://m.facebook.com/SMK-Paraduta-Bangsa-Tangsel-265080615362977/?ref=page_internal"
+                            target="__blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/smkparadutabangsa/"
                             target="_blank" aria-label="LinkedIn"><i class="fab fa-instagram"></i></a>
                     </div>

@@ -5,7 +5,7 @@
     <br>
     <div class="container-fluid mt-2">
         <div class="font-weight-bold text-black">
-            <p class="fs-30 mb-0">Profile</p>
+            <p class="fs-30 mb-0">Update Data User</p>
             <span></span>
         </div>
         <div class="mt-4">
@@ -14,11 +14,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center">
-                                <img width="130" src="{{ asset('assets/img/undraw_posting_photo.svg') }}">
+                                <img  width="130" src="{{ asset('assets/img/undraw_profile.svg') }}">
                                 <div class="mt-3">
                                     <h4 class="text-black font-weight-bold"></h4>
                                     <p>SMK PARADUTA BANGSA TANGERANG SELATAN</p>
-                                    <p><span class="font-weight-bold">{{ Auth::user()->name }}</span></p>
+                                    <p><span class="font-weight-bold">{{Auth::user()->name}}</span></p>
                                 </div>
                                 <hr>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -31,9 +31,9 @@
                 </div>
                 <div class="col-sm-7">
                     <div class="card">
-                        <h5 class="card-header fs-18 font-weight-bold text-white bg-warning">Edit Profile</h5>
+                        <h5 class="card-header fs-18 font-weight-bold text-white bg-warning">Edit User</h5>
                         <div class="card-body">
-                            <form action="{{ route('edit-profile', Auth::user()->id) }}" class="fs-14 needs-validation"
+                            <form action="{{ route('edit-profile', $data->id) }}" class="fs-14 needs-validation"
                                 novalidate method="post">
                                 @csrf
                                 <div>
@@ -92,10 +92,28 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="mt-2">
+                                    <label class="form-label font-weight-bold">User Role</label><br>
+                                    <input type="radio" {{ $data->user_role == 'panitia' ? 'checked' : '' }}
+                                        name="user_role" value="panitia">
+                                    <label for="customRadioInline1">Panitia</label>
+
+                                    <input type="radio" {{ $data->user_role == 'tu' ? 'checked' : '' }} name="user_role"
+                                        value="tu">
+                                    <label for="customRadioInline1">Tu</label>
+
+                                    <input type="radio" {{ $data->user_role == 'kepalasekolah' ? 'checked' : '' }}
+                                        name="user_role" value="kepalasekolah">
+                                    <label for="customRadioInline1">Kepala Sekolah</label>
+
+                                    <input type="radio" {{ $data->user_role == 'siswa' ? 'checked' : '' }}
+                                        name="user_role" value="siswa">
+                                    <label for="customRadioInline1">Siswa</label>
+                                </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-dark btn-sm"><i
                                             class="fa fa-redo mr-2"></i>Perbarui Akun</button>
-                                    <a href="{{ route('dashboard') }}" type="submit"
+                                    <a href="{{ route('register-user') }}" type="submit"
                                         class="btn btn-outline-danger btn-sm"><i class="fa fa-redo mr-2"></i>Back</a>
                                 </div>
                             </form>

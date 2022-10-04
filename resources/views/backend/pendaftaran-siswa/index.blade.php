@@ -157,6 +157,19 @@
                                     </div>
                                 </div>
 
+                                <div class="row mb-2">
+                                    <label for="asal_sekolah"
+                                        class="col-sm-3 text-right col-form-label font-weight-bold">Status
+                                        <span class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="asal_sekolah" class="form-control "
+                                            placeholder="Asal Sekolah" value="{{$formPendaftaran->status->nama_status}}">
+                                        @error('asal_sekolah')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="col-lg-6">
                                 <div class="row mb-2">

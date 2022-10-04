@@ -2,19 +2,20 @@
 @section('title', 'Admin | Dashboard')
 
 @section('backend')
-<style>
-    .card-radius{
-        border-radius: 1rem;
-    }
-    .card-footer{
-        border-radius: 1rem !important;
-        border: 8px solid whitesmoke;
-    }
+    <style>
+        .card-radius {
+            border-radius: 1rem;
+        }
 
-    .bg-dark{
-        background: grey !important;
-    }
-</style>
+        .card-footer {
+            border-radius: 1rem !important;
+            border: 8px solid whitesmoke;
+        }
+
+        .bg-dark {
+            background: grey !important;
+        }
+    </style>
     <div class="side-app">
 
         <!-- page-header -->
@@ -69,7 +70,7 @@
         </div>
 
         <!-- Row -->
-        @if ($auth->user_role != 'siswa')
+        @if (Auth::user()->user_role == 'panitia' || Auth::user()->user_role == 'tu')
             <div class="row">
                 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6">
                     <div class="card card-radius">
@@ -86,7 +87,7 @@
                                     <p class="text-muted mb-1">
                                         Total Pendaftaran
                                     </p>
-                                    <h2 class="mt-2 mb-0 number-font">{{$jumlahPendaftaran->count()}}</h2>
+                                    <h2 class="mt-2 mb-0 number-font">{{ $jumlahPendaftaran->count() }}</h2>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +142,7 @@
                                     <p class="text-muted mb-1">
                                         Total Kelas
                                     </p>
-                                    <h2 class="mt-2 mb-0 number-font">{{$kelas->count()}}</h2>
+                                    <h2 class="mt-2 mb-0 number-font">{{ $kelas->count() }}</h2>
                                 </div>
                             </div>
                         </div>

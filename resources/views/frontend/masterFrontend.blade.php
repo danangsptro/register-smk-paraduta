@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('assets/css/frontend/css/styles.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/bootstrap/css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -31,7 +33,14 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+
+    <script>
+        AOS.init({
+            duration: 2000,
+        });
+    </script>
 </body>
 
 </html>

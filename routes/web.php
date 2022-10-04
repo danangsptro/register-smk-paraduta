@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/edit-profile/{id}', 'Backend\registerUserController@editProfile')->name('edit-profile');
         Route::post('/update-password/{id}', 'Backend\registerUserController@updatePassword')->name('update-password');
         Route::get('/profile', 'Backend\registerUserController@profile')->name('profile');
+        Route::delete('/delete-user/{id}', 'Backend\registerUserController@delete')->name('delete-user');
+        Route::get('/update-user/{id}','Backend\registerUserController@updateUser')->name('update-user');
         // Jurusan
         Route::get('/jurusan', 'Backend\jurusanController@index')->name('jurusan');
         Route::post('/jurusan-store', 'Backend\jurusanController@store')->name('jurusan-store');
@@ -67,7 +69,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/laporan-jurusan', 'Backend\laporanController@laporanJurusan')->name('laporan-jurusan');
         Route::get('/laporan-kelas/{id?}', 'Backend\laporanController@laporanKelas')->name('laporan-kelas');
         Route::get('/data-siswa/{id?}', 'Backend\laporanController@dataSiswa')->name('data-siswa');
-        // Invoice Siswa
+        Route::get('/print-data-siswa/{id}', 'Backend\laporanController@printDataSiswa')->name('print-data-siswa');
+        Route::get('/print-jumlah-pendaftaran', 'backend\formPendaftaranController@printJumlahPendaftaran')->name('printJumlahPendaftaran');
+;        // Invoice Siswa
         Route::get('/invoice-siswa', 'Backend\invoiceController@invoiceSiswa')->name('invoice-siswa');
         Route::get('/print-invoice-siswa', 'Backend\invoiceController@printInvoiceSiswa')->name('print-invoice-siswa');
         // Logout
@@ -75,6 +79,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Get jurusan and kelas
         Route::get('/getKelas/{id}', 'backend\formPendaftaranController@getKelas')->name('getKelas');
+        // Pindah Jurusan
+        Route::get('/pindah-jurusan/{id}', 'Backend\laporanController@laporanPindahJurusan')->name('laporanPindahJurusan');
+        Route::post('/pindah-jurusan-update/{id}', 'Backend\laporanController@laporanPindahJurusanUpdate')->name('laporanPindahJurusanUpdate');
     });
 });
 

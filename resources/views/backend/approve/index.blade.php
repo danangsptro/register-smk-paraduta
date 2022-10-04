@@ -24,6 +24,7 @@
                                 <li>Sudah Bayar Formulir Pendaftaran</li>
                                 <li>Menerima Formulir Pendaftaran</li>
                                 <li>Sudah Register Pendaftaran</li>
+                                <li>Belum Bayar Pendaftaran</li>
                                 <li>Sudah Bayar Pendaftaran</li>
                                 <li>Sudah Diterima</li>
                             </ol>
@@ -49,43 +50,10 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->nama_calon_siswa }}</td>
-                                            <td>
-                                                <a href="#" class="m-1 " data-toggle="modal"
-                                                    data-target="#edit{{ $loop->iteration }}">
-                                                    {{ $item->bukti_transfer_1 ? 'Detail!' : '-' }}
-                                                </a>
-                                                <div class="d-flex justify-content-center text-center">
-                                                    <div class="modal fade" id="edit{{ $loop->iteration }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="edit{{ $loop->iteration }}Label"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title"
-                                                                        id="edit{{ $item->iteration }}Label">Bukti
-                                                                        Pembayaran Formulir Pendaftaran : <strong>
-                                                                            {{ $item->nama_calon_siswa }}</strong>
-                                                                    </h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="form-row">
-                                                                        <img src="{{ Storage::url($item->bukti_transfer_1) }}"
-                                                                            width="100%" alt="">
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <td class="text-center">
+                                                <a href="{{ Storage::url($item->bukti_transfer_1) }}" target="_blank">
+                                                    <img width="50" height="50" border="0" align="center"  src="{{ Storage::url($item->bukti_transfer_1) }}" style="border-radius: 1rem; border:4px solid salmon;" />
+                                                  </a>
                                             </td>
                                             <td>
                                                 @if ($item->validasi_bukti_transfer_1 === 'menunggu')
@@ -100,44 +68,10 @@
                                             </td>
 
 
-                                            <td>
-                                                <a href="" class=" m-1" data-toggle="modal"
-                                                    data-target="#edit{{ $loop->iteration }}" style="border-radius: 5rem">
-                                                    {{ $item->bukti_transfer_2 ? 'Lihat!' : '-' }}
-
-                                                </a>
-                                                <div class="d-flex justify-content-center text-center">
-                                                    <div class="modal fade" id="edit{{ $loop->iteration }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="edit{{ $loop->iteration }}Label"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title"
-                                                                        id="edit{{ $item->iteration }}Label">Bukti
-                                                                        Pembayaran Formulir Pendaftaran : <strong>
-                                                                            {{ $item->nama_calon_siswa }}</strong>
-                                                                    </h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="form-row">
-                                                                        <img src="{{ Storage::url($item->bukti_transfer_2) }}"
-                                                                            width="100%" alt="">
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <td class="text-center">
+                                                <a href="{{ Storage::url($item->bukti_transfer_2) }}" target="_blank">
+                                                    <img width="50" height="50" border="0" align="center"  src="{{ Storage::url($item->bukti_transfer_2) }}" style="border-radius: 1rem; border:4px solid salmon;" />
+                                                  </a>
                                             </td>
                                             <td>
                                                 @if ($item->validasi_bukti_transfer_2 === 'menunggu')
@@ -155,13 +89,13 @@
                                             <td><span class="badge badge-dark">{{ $item->status_id }}</span> -
                                                 {{ $item->status->nama_status }}</td>
                                             <td>
-                                                @if ($item->validasi_bukti_transfer_1 === 'menunggu')
+                                                @if ($item->validasi_bukti_transfer_1 === 'menunggu' && Auth::user()->user_role === 'panitia')
                                                     <form action="{{ route('update-invoice-tf1', $item->id) }}"
                                                         method="post">
                                                         @csrf
                                                         <button class="btn btn-primary" type="submit">Update TF1</button>
                                                     </form>
-                                                @elseif($item->validasi_bukti_transfer_2 === 'menunggu')
+                                                @elseif($item->validasi_bukti_transfer_2 === 'menunggu' && Auth::user()->user_role === 'tu')
                                                     <form action="{{ route('update-invoice-tf2', $item->id) }}"
                                                         method="post">
                                                         @csrf

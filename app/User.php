@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'jenis_kelamin', 'alamat',  'no_telepon', 'tempat_lahir', 'tanggal_lahir', 'user_role', 'password',
     ];
 
     /**
@@ -38,7 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function invoice(){
+    public function invoice()
+    {
         return $this->hasMany(invoice::class, 'user_id', 'id');
     }
 }

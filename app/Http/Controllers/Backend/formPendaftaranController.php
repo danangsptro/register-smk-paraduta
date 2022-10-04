@@ -8,6 +8,7 @@ use App\Http\Models\invoice;
 use App\Http\Models\Jurusan;
 use App\Http\Models\kelas;
 use App\Http\Models\uploadInvoice;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,7 @@ class formPendaftaranController extends Controller
             $user = Auth::user()->id;
             $formPendaftaran = formPendaftaran::whereUserId($user)->first();
             $upload = uploadInvoice::whereUserId($user)->get();
+            // dd($formPendaftaran);
             return view('backend.pendaftaran-siswa.index', compact('jurusan', 'kelas', 'formPendaftaran', 'upload'));
         } else {
             toastr()->error('Access Denied!');
@@ -56,14 +58,14 @@ class formPendaftaranController extends Controller
                 if (!$request->ijazah) {
                     $data->ijazah = $data->ijazah;
                 } else {
-                    $validasiData['ijazah'] = $request->file('ijazah')->store('asset/tf1', 'public');
+                    $validasiData['ijazah'] = $request->file('ijazah')->store('asset/ijzah', 'public');
                     $data->ijazah = $validasiData['ijazah'];
                 }
                 $data->skhun = $request['skhun'];
                 if (!$request->skhun) {
                     $data->skhun = $data->skhun;
                 } else {
-                    $validasiData['skhun'] = $request->file('skhun')->store('asset/tf1', 'public');
+                    $validasiData['skhun'] = $request->file('skhun')->store('asset/skhun', 'public');
                     $data->skhun = $validasiData['skhun'];
                 }
                 $data->foto = $request['foto'];
@@ -71,7 +73,7 @@ class formPendaftaranController extends Controller
                 if (!$request->foto) {
                     $data->foto = $data->foto;
                 } else {
-                    $validasiData['foto'] = $request->file('foto')->store('asset/tf1', 'public');
+                    $validasiData['foto'] = $request->file('foto')->store('asset/foto', 'public');
                     $data->foto = $validasiData['foto'];
                 }
                 $data->asal_sekolah = $request['asal_sekolah'];
@@ -99,7 +101,7 @@ class formPendaftaranController extends Controller
                 DB::commit();
             });
         } catch (\Throwable $th) {
-            toastr()->error('Error Cuy!', $th->getMessage());
+            toastr()->error('Error!', $th->getMessage());
             return redirect()->back();
         }
 
@@ -131,12 +133,37 @@ class formPendaftaranController extends Controller
             $jumlahPendaftaran = $jumlahPendaftaran->whereBetween('updated_at', [$start, $end]);
         }
 
-        if (Auth::user()->user_role === 'admin' || Auth::user()->user_role === 'panitia') {
+        if (Auth::user()->user_role === 'tu' || Auth::user()->user_role === 'panitia' || Auth::user()->user_role === 'kepalasekolah') {
             return view('backend.pendaftaran-siswa.jumlah-pendaftaran', compact('jumlahPendaftaran', 'start', 'end'));
         } else {
             toastr()->error('Access denied');
             return redirect()->back();
         }
+    }
+
+    public function printJumlahPendaftaran(Request $request)
+    {
+        $data = formPendaftaran::all();
+        $text = 'Laporan Total Jumlah Pendaftaran';
+        $user = Auth::user()->id;
+        $idUser = User::where('id', $user)->first();
+
+        $start = date("Y-m-d 00:00:00", strtotime($request->start));
+        $end = date("Y-m-d 23:59:59", strtotime($request->end));
+
+        if ($request->start && $request->end) {
+            $data = $data->whereBetween('updated_at', [$start, $end]);
+        }
+
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->loadView('backend.pendaftaran-siswa.print-jumlah-pendaftaran', compact(
+            'data',
+            'text',
+            'idUser'
+        ));
+
+        return $pdf->stream("Laporan-arsip-baru.pdf");
     }
 
     public function updateStatusJumlahPendaftaran($id)

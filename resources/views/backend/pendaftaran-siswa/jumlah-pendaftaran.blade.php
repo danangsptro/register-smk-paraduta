@@ -24,7 +24,7 @@
                                 </svg>
                             </span>
                         </a>
-                        <form action="{{route('jumlah-pendaftaran')}}" method="GET">
+                        <form action="{{ route('jumlah-pendaftaran') }}" method="GET">
                             <div class="row mt-2">
                                 <div class="col-lg-4">
                                     <div class="input-group">
@@ -45,7 +45,7 @@
                                 <div class="col-lg-4">
                                     <button class="btn btn-dark" type="submit">Search</button>
                                     @if (Request::get('start') and Request::get('end'))
-                                        <a href="{{route('jumlah-pendaftaran')}}" type="submit" class="btn btn-danger"
+                                        <a href="{{ route('jumlah-pendaftaran') }}" type="submit" class="btn btn-danger"
                                             style="margin-left: 0.5em">Clear filter</a>
                                     @endif
                                 </div>
@@ -73,19 +73,19 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="" class=" m-1" data-toggle="modal"
-                                                        data-target="#edit{{ $item->iteration }}"
+                                                        data-target="#edit{{ $loop->iteration }}"
                                                         style="border-radius: 5rem">
-                                                        {{ $item->nama_calon_siswa ? 'Detail!' : '-' }}
+                                                        {{ $item->asal_sekolah ? 'Detail!' : '-' }}
 
                                                     </a>
-                                                    <div class="modal fade" id="edit{{ $item->iteration }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="edit{{ $item->iteration }}Label"
+                                                    <div class="modal fade" id="edit{{ $loop->iteration }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="edit{{ $loop->iteration }}Label"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-lg" role="document">
                                                             <div class="modal-content">
-                                                                <div class="modal-header">
+                                                                <div class="modal-header bg-dark">
                                                                     <h5 class="modal-title"
-                                                                        id="edit{{ $item->iteration }}Label">Kelengkapan
+                                                                        id="edit{{ $loop->iteration }}Label">Kelengkapan
                                                                         Data : <strong>
                                                                             {{ $item->nama_calon_siswa }}</strong>
                                                                     </h5>
@@ -94,7 +94,7 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <div class="modal-body">
+                                                                <div class="modal-body modal-xl">
                                                                     <div class="form-row">
                                                                         <div class="col-lg-6">
                                                                             <label>Nama Calon Siswa</label>
@@ -108,16 +108,22 @@
                                                                                 value="{{ $item->asal_sekolah }}" readonly>
                                                                         </div>
 
-                                                                        <div class="col-lg-6 mt-4">
-                                                                            <label>Jurusan</label>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ $item->jurusan }}" readonly>
-                                                                        </div>
-                                                                        <div class="col-lg-6 mt-4">
-                                                                            <label>Kelas</label>
-                                                                            <input type="text" class="form-control"
-                                                                                value="{{ $item->kelas }}" readonly>
-                                                                        </div>
+                                                                        @if ($item->jurusan)
+                                                                            <div class="col-lg-6 mt-4">
+                                                                                <label>Jurusan</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    value="{{ $item->jurusan->nama_jurusan }}"
+                                                                                    readonly>
+                                                                            </div>
+                                                                            <div class="col-lg-6 mt-4">
+                                                                                <label>Kelas</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    value="{{ $item->kelas->nama_kelas }}"
+                                                                                    readonly>
+                                                                            </div>
+                                                                        @else
+                                                                            -
+                                                                        @endif
 
                                                                         <div class="col-lg-6 mt-4">
                                                                             <label>No Telp Siswa</label>
@@ -141,6 +147,37 @@
                                                                             <input type="text" class="form-control"
                                                                                 value="{{ $item->no_telp_orang_tua }}"
                                                                                 readonly>
+                                                                        </div>
+                                                                        <br><br>
+                                                                        <div class="col-lg-6 mt-4">
+                                                                            <label>Ijazah</label>
+                                                                            <br>
+                                                                            <a href="{{ Storage::url($item->ijazah) }}"
+                                                                                target="_blank">
+                                                                                <img width="200" height="200"
+                                                                                    border="0" align="center"
+                                                                                    src="{{ Storage::url($item->ijazah) }}" />
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-lg-6 mt-4">
+                                                                            <label>Skhun</label>
+                                                                            <br>
+                                                                            <a href="{{ Storage::url($item->skhun) }}"
+                                                                                target="_blank">
+                                                                                <img width="200" height="200"
+                                                                                    border="0" align="center"
+                                                                                    src="{{ Storage::url($item->skhun) }}" />
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-lg-12 mt-4">
+                                                                            <label>Foto</label>
+                                                                            <br>
+                                                                            <a href="{{ Storage::url($item->foto) }}"
+                                                                                target="_blank">
+                                                                                <img width="200" height="200"
+                                                                                    border="0" align="center"
+                                                                                    src="{{ Storage::url($item->foto) }}" />
+                                                                            </a>
                                                                         </div>
                                                                     </div>
 
@@ -182,4 +219,16 @@
         <!-- Row End-->
     </div>
 
+@endsection
+
+
+@section('script')
+    <script type="text/javascript">
+        function exportPdf() {
+            var start = $('input[name=start]').val();
+            var end = $('input[name=end]').val();
+            var url = "{{ route('printJumlahPendaftaran') }}?start=" + start + "&end=" + end;
+            return window.open(url, '_blank');
+        }
+    </script>
 @endsection

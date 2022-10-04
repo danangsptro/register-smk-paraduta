@@ -120,8 +120,77 @@
                                             <td>{{ $item->jumlah_siswa }}</td>
                                             <td>
                                                 @if (Auth::user()->user_role === 'admin' || Auth::user()->user_role === 'panitia')
-                                                    <button class="btn btn-dark btn-sm"><i class="ion-compose"
-                                                            data-toggle="tooltip" title="ti-pencil"></i> Edit</button>
+                                                    <a href="" class="btn btn-dark btn-sm" data-toggle="modal"
+                                                        data-target="#edit{{ $loop->iteration }}"><i class="ion-compose"
+                                                            data-toggle="tooltip" title="ti-pencil"></i> Edit</a>
+
+                                                    <div class="modal fade" id="edit{{ $loop->iteration }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="edit{{ $loop->iteration }}Label"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-md" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-dark">
+                                                                    <h5 class="modal-title"
+                                                                        id="edit{{ $loop->iteration }}Label">Data Kelas
+                                                                        <strong>
+                                                                        </strong>
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div>
+                                                                    <form action="{{ route('kelas-update', $item->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        <div class="modal-body">
+                                                                            <div class="form-row">
+                                                                                <div class="col-lg-12">
+                                                                                    <label>Nama Jurusan</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        value="{{ $item->jurusan->nama_jurusan }}"
+                                                                                        readonly>
+                                                                                    <input type="text" hidden
+                                                                                        class="form-control" name="jurusan_id"
+                                                                                        value="{{ $item->jurusan_id }}"
+                                                                                        readonly>
+                                                                                </div>
+
+                                                                                <div class="col-lg-12 mt-4">
+                                                                                    <label>Nama Kelas</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        name="nama_kelas"
+                                                                                        value="{{ $item->nama_kelas }}">
+                                                                                </div>
+
+                                                                                <div class="col-lg-12 mt-4">
+                                                                                    <label>Jumlah Siswa</label>
+                                                                                    <input type="number"
+                                                                                        class="form-control"
+                                                                                        name="jumlah_siswa"
+                                                                                        value="{{ $item->jumlah_siswa }}">
+                                                                                </div>
+
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Save
+                                                                                changes</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <form action="{{ route('kelas-delete', $item->id) }}" method="POST"
                                                         class="d-inline">
                                                         @csrf

@@ -10,13 +10,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use PDO;
 
 class registerUserController extends Controller
 {
     public function index()
     {
-        $data = User::all();
-        if (Auth::user()->user_role === 'admin') {
+        $user = Auth::user();
+        // WhereNotIn != id
+        // Wherein === id
+        $data = User::whereNotIn('id', [$user->id])->get();
+
+        if (Auth::user()->user_role === 'admin' || Auth::user()->user_role === 'panitia') {
             return view('backend.register.index', compact('data'));
         } else {
             toastr()->error('Access Denied!');
@@ -89,11 +94,17 @@ class registerUserController extends Controller
         return view('backend.home.profile', compact('data'));
     }
 
+    public function updateUser($id)
+    {
+        $data = User::find($id);
+        return view('backend.register.edit', compact('data'));
+    }
+
     public function editProfile(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|min:1',
+            'name' => 'required|min:1',
+            'email' => 'required|min:1|unique:users,email,' .$id,
             'jenis_kelamin' => 'required|min:1',
             'alamat' => 'required|min:1',
             'no_telepon' => 'required|min:1',
@@ -122,5 +133,18 @@ class registerUserController extends Controller
 
         toastr()->success('Selamat! Password berhasil diperbaharui.');
         return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+        $data = User::find($id);
+        if ($data) {
+            $data->delete();
+            toastr()->success('Data telah berhasil dihapus!');
+            return redirect()->back();
+        } else {
+            toastr()->error('Data not found!');
+            return redirect()->back();
+        }
     }
 }
