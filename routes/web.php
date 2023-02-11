@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data-siswa/{id?}', 'Backend\laporanController@dataSiswa')->name('data-siswa');
         Route::get('/print-data-siswa/{id}', 'Backend\laporanController@printDataSiswa')->name('print-data-siswa');
         Route::get('/print-jumlah-pendaftaran', 'backend\formPendaftaranController@printJumlahPendaftaran')->name('printJumlahPendaftaran');
-;        // Invoice Siswa
+        // Invoice Siswa
         Route::get('/invoice-siswa', 'Backend\invoiceController@invoiceSiswa')->name('invoice-siswa');
         Route::get('/print-invoice-siswa', 'Backend\invoiceController@printInvoiceSiswa')->name('print-invoice-siswa');
         // Logout

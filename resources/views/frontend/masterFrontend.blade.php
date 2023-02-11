@@ -37,9 +37,9 @@
 
 
     <script>
-        AOS.init({
-            duration: 2000,
-        });
+        // AOS.init({
+        //     duration: 2000,
+        // });
     </script>
 </body>
 

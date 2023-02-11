@@ -41,8 +41,7 @@
                 </div>
                 <br><br>
                 <div class="row">
-                    <div class="col-lg-6 text-center"data-aos="flip-left" data-aos-easing="ease-out-cubic"
-                        data-aos-duration="2000">
+                    <div class="col-lg-6 text-center">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -90,7 +89,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-lg-6" style="margin-top: 3rem; font-familiy:sans-serif;" data-aos="fade-left">
+                    <div class="col-lg-6" style="margin-top: 3rem; font-familiy:sans-serif;" >
                         <h5>
                             SMK PARADUTA BANGSA adalah salah satu satuan pendidikan dengan jenjang SMK di Pondok Jagung
                             Timur, Kec. Serpong Utara, Kota Tangerang Selatan, Banten. Dalam menjalankan kegiatannya, SMKS
@@ -108,7 +107,7 @@
                     <h3 class="section-heading text-uppercase mb-4"><strong>JURUSAN</strong></h3>
                 </div>
                 <br>
-                <div class="row" data-aos="flip-up">
+                <div class="row" >
                     @foreach ($jurusan as $item)
                         <div class="col-lg-6 col-sm-6 mb-4">
                             <!-- Portfolio item 1-->
